@@ -113,7 +113,6 @@ mmdet/version.py
 *.pkl
 *.pkl.json
 *.log.json
-work_dirs/
 
 # Pytorch
 *.pth
