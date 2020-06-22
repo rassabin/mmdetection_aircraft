@@ -45,7 +45,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=12,
+            num_classes=11,
             bbox_coder=dict(
                 type='DeltaXYWHBBoxCoder',
                 target_means=[0.0, 0.0, 0.0, 0.0],
@@ -64,7 +64,7 @@ model = dict(
             num_convs=4,
             in_channels=256,
             conv_out_channels=256,
-            num_classes=12,
+            num_classes=11,
             loss_mask=dict(
                 type='CrossEntropyLoss', use_mask=True, loss_weight=1.0))))
 img_norm_cfg = dict(
@@ -78,8 +78,7 @@ train_pipeline = [
         poly2mask=False),
     dict(
         type='Resize',
-        img_scale=[(1333, 640), (1333, 672), (1333, 704), (1333, 736),
-                   (1333, 768), (1333, 800)],
+        img_scale=[(1024, 768)],
         multiscale_mode='value',
         keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
@@ -96,7 +95,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(1333, 800),
+        img_scale=(1024, 768),
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -127,8 +126,8 @@ test_cfg = dict(
 dataset_type = 'CocoDataset'
 data_root = '/content/mmdetection_aircraft/data/coco/'
 data = dict(
-    imgs_per_gpu=1,
-    workers_per_gpu=1,
+    imgs_per_gpu=7,
+    workers_per_gpu=7,
     train=dict(
         type='CocoDataset',
         ann_file=
@@ -143,8 +142,7 @@ data = dict(
                 poly2mask=False),
             dict(
                 type='Resize',
-                img_scale=[(1333, 640), (1333, 672), (1333, 704), (1333, 736),
-                           (1333, 768), (1333, 800)],
+                img_scale=[(1024, 768)],
                 multiscale_mode='value',
                 keep_ratio=True),
             dict(type='RandomFlip', flip_ratio=0.5),
@@ -168,7 +166,7 @@ data = dict(
             dict(type='LoadImageFromFile'),
             dict(
                 type='MultiScaleFlipAug',
-                img_scale=(1333, 800),
+                img_scale=(1024, 768),
                 flip=False,
                 transforms=[
                     dict(type='Resize', keep_ratio=True),
@@ -192,7 +190,7 @@ data = dict(
             dict(type='LoadImageFromFile'),
             dict(
                 type='MultiScaleFlipAug',
-                img_scale=(1333, 800),
+                img_scale=(1024, 768),
                 flip=False,
                 transforms=[
                     dict(type='Resize', keep_ratio=True),
@@ -249,7 +247,7 @@ train_cfg = dict(
             add_gt_as_proposals=True),
         mask_size=28,
         pos_weight=-1,
-        debug=False))
+        debug=True))
 workflow = [('train', 1)]
 checkpoint_config = dict(interval=1)
 optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001)
@@ -263,6 +261,6 @@ lr_config = dict(
 log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
 resume_from = None
 load_from = None
-total_epochs = 12
+total_epochs = 100
 work_dir = './work_dirs/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco'
 gpu_ids = range(0, 1)

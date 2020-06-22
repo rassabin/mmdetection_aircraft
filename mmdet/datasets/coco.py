@@ -355,7 +355,7 @@ class CocoDataset(CustomDataset):
                 raise KeyError(f'metric {metric} is not supported')
 
         result_files, tmp_dir = self.format_results(results, jsonfile_prefix)
-
+        print(result_files)
         eval_results = {}
         cocoGt = self.coco
         for metric in metrics:

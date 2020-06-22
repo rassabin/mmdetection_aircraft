@@ -28,7 +28,7 @@ model = {'type': 'MaskRCNN', 'pretrained': 'torchvision://resnet50' ,
   'bbox_head': {'type': 'Shared2FCBBoxHead', 'in_channels': 256, 
   'fc_out_channels': 1024,
    'roi_feat_size': 7,
-    'num_classes': len(classes)+1, 
+    'num_classes': len(classes), 
     'bbox_coder': {'type': 'DeltaXYWHBBoxCoder', 
     'target_means': [0.0, 0.0, 0.0, 0.0], 
     'target_stds': [0.1, 0.1, 0.2, 0.2]}, 
@@ -39,7 +39,7 @@ model = {'type': 'MaskRCNN', 'pretrained': 'torchvision://resnet50' ,
      'roi_layer': {'type': 'RoIAlign', 'out_size': 14, 'sample_num': 0},
       'out_channels': 256, 'featmap_strides': [4, 8, 16, 32]}, 
       'mask_head': {'type': 'FCNMaskHead', 'num_convs': 4, 'in_channels': 256, 
-      'conv_out_channels': 256, 'num_classes': len(classes)+1,
+      'conv_out_channels': 256, 'num_classes': len(classes),
        'loss_mask': {'type': 'CrossEntropyLoss', 'use_mask': True, 'loss_weight': 1.0}}}}
 img_norm_cfg = dict(
     mean=[103.530, 116.280, 123.675], std=[1.0, 1.0, 1.0], to_rgb=False)
@@ -95,8 +95,8 @@ data_root = '/content/mmdetection_aircraft/data/coco/'
 classes = ('vale', 'chipped', 'bend', 'NIck', 'DIstortion', 'Missing material',
  'Bird strike', 'Blend', 'Blend repair', 'Tip curl', 'Scratch')
 data = dict(
-    imgs_per_gpu=1,
-    workers_per_gpu=1,
+    imgs_per_gpu=7,
+    workers_per_gpu=7,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/instances.json',
@@ -127,7 +127,7 @@ train_cfg = {'rpn':
    'match_low_quality': True, 'ignore_iof_thr': -1}, 
    'sampler': {'type': 'RandomSampler', 'num': 512, 'pos_fraction': 0.25,
     'neg_pos_ub': -1, 'add_gt_as_proposals': True}, 'mask_size': 28, 
-    'pos_weight': -1, 'debug': False}}
+    'pos_weight': -1, 'debug': True}}
 #load_from = '/home/maksim/mmdetection/checkpoints/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco-dbecf295.pth'
 workflow = [('train', 1)]
 checkpoint_config = {'interval': 1}
@@ -139,4 +139,4 @@ log_config = {'interval': 50, 'hooks': [{'type': 'TextLoggerHook'}]}
 resume_from = None
 load_from = None
 #load_from = '/content/mmdetection_aircraft/checkpoints/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco-dbecf295.pth'
-total_epochs = 12
+total_epochs = 100
