@@ -107,7 +107,7 @@ model = dict(
             conv_out_channels=256,
             num_classes=len(classes),
             loss_mask=dict(
-                type='CrossEntropyLoss', use_mask=True, loss_weight=1.0))))
+                type='FocalLoss', use_mask=True, loss_weight=1.0))))
 # model training and testing settings
 train_cfg = dict(
     rpn=dict(
@@ -245,8 +245,8 @@ train_pipeline = [
 dataset_type = 'CocoDataset'
 data_root = '/content/mmdetection_aircraft/data/coco/'
 data = dict(
-    imgs_per_gpu=5,
-    workers_per_gpu=5,
+    imgs_per_gpu=4,
+    workers_per_gpu=4,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/instances.json',
@@ -263,6 +263,6 @@ data = dict(
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline))
 total_epochs = 50
-load_from = "/content/mmdetection_aircraft/work_dirs/cascade_mask_101/epoch_50.pth"
+load_from = "/content/epoch_50.pth"
 
 
