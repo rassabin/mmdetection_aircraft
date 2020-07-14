@@ -210,7 +210,7 @@ class BaseDetector(nn.Module, metaclass=ABCMeta):
             for i in inds:
                 i = int(i)
                 color_mask = color_masks[labels[i]]
-                mask = maskUtils.decode(segms[i]).astype(np.bool)
+                mask = segms[i]
                 img[mask] = img[mask] * 0.5 + color_mask * 0.5
         # if out_file specified, do not show image in window
         if out_file is not None:
@@ -230,7 +230,6 @@ class BaseDetector(nn.Module, metaclass=ABCMeta):
             show=show,
             wait_time=wait_time,
             out_file=out_file)
-
         if not (show or out_file):
             warnings.warn('show==False and out_file is not specified, only '
                           'result image will be returned')

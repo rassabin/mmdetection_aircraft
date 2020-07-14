@@ -1,0 +1,35 @@
+<annotation>
+  <folder>photo</folder>
+  <filename>photo_2020-05-20_21-16-56 (3).jpg</filename>
+  <source>
+    <database>Unknown</database>
+    <annotation>Unknown</annotation>
+    <image>Unknown</image>
+  </source>
+  <size>
+    <width>1024</width>
+    <height>768</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>distortion</name>
+    <occluded>0</occluded>
+    <bndbox>
+      <xmin>467.1669921875</xmin>
+      <ymin>376.8408203125</ymin>
+      <xmax>657.7723083496094</xmax>
+      <ymax>432.8280220031738</ymax>
+    </bndbox>
+  </object>
+  <object>
+    <name>distortion</name>
+    <occluded>0</occluded>
+    <bndbox>
+      <xmin>888.455078125</xmin>
+      <ymin>40.3095703125</ymin>
+      <xmax>1007.9750823974609</xmax>
+      <ymax>75.87757110595703</ymax>
+    </bndbox>
+  </object>
+</annotation>

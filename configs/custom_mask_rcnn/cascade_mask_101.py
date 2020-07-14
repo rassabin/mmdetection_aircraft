@@ -243,7 +243,7 @@ train_pipeline = [
 ]
 
 dataset_type = 'CocoDataset'
-data_root = '/content/mmdetection_aircraft/data/coco/'
+data_root = '/mmdetection_aircraft/data/coco/'
 data = dict(
     imgs_per_gpu=4,
     workers_per_gpu=4,
@@ -262,7 +262,8 @@ data = dict(
         ann_file=data_root + 'annotations/instances.json',
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline))
-total_epochs = 50
-load_from = "/content/epoch_50.pth"
+total_epochs = 100
+load_from = "/mmdetection_aircraft/epoch_100_cascade_focal_loss.pth"
+device='cuda:1'
 
 

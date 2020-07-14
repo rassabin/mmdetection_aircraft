@@ -1,0 +1,13 @@
+# label:color_rgb:parts:actions
+background:0,0,0::
+vale:128,0,0::
+chipped:0,128,0::
+bend:128,128,0::
+nick:0,0,128::
+distortion:128,0,128::
+missing material:0,128,128::
+bird strike:128,128,128::
+blend:64,0,0::
+blend repair:192,0,0::
+tip curl:64,128,0::
+scratch:192,128,0::

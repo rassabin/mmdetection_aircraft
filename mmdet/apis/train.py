@@ -11,7 +11,7 @@ from mmdet.core import (DistEvalHook, DistOptimizerHook, EvalHook,
                         Fp16OptimizerHook, build_optimizer)
 from mmdet.datasets import build_dataloader, build_dataset
 from mmdet.utils import get_root_logger
-
+torch.cuda.set_device(1)
 
 def set_random_seed(seed, deterministic=False):
     """Set random seed.
@@ -123,7 +123,7 @@ def train_detector(model,
         # torch.nn.parallel.DistributedDataParallel
         model = MMDistributedDataParallel(
             model.cuda(),
-            device_ids=[torch.cuda.current_device()],
+            device_ids=[1],
             broadcast_buffers=False,
             find_unused_parameters=find_unused_parameters)
     else:

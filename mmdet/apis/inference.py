@@ -10,9 +10,10 @@ from mmdet.core import get_classes
 from mmdet.datasets.pipelines import Compose
 from mmdet.models import build_detector
 from mmdet.ops import RoIAlign, RoIPool
+torch.cuda.set_device(1)
 
 
-def init_detector(config, checkpoint=None, device='cuda:0'):
+def init_detector(config, checkpoint=None, device='cuda:1'):
     """Initialize a detector from config file.
 
     Args:

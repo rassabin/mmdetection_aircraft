@@ -1,0 +1,25 @@
+<annotation>
+  <folder>photo</folder>
+  <filename>photo_2020-05-20_21-16-58.jpg</filename>
+  <source>
+    <database>Unknown</database>
+    <annotation>Unknown</annotation>
+    <image>Unknown</image>
+  </source>
+  <size>
+    <width>1024</width>
+    <height>768</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>missing material</name>
+    <occluded>0</occluded>
+    <bndbox>
+      <xmin>502.86328125</xmin>
+      <ymin>287.8251953125</ymin>
+      <xmax>540.7507286071777</xmax>
+      <ymax>305.145170211792</ymax>
+    </bndbox>
+  </object>
+</annotation>
